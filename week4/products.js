@@ -184,7 +184,6 @@ app.component('del-product-modal', {
         })
     },
     hideModal() {
-      console.log('hideModal');
       delProductModal.hide();
     },
   }

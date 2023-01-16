@@ -5,7 +5,6 @@ export default {
     // 分頁 "當前頁"：透過emit事件 來觸發外層事件getData。
     props: ['pages' , 'getProduct'],
     template:`<nav aria-label="Page navigation example">
-    {{ pages }}
     <ul class="pagination">
 
       <li class="page-item"
