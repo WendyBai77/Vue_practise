@@ -8,7 +8,7 @@ const App = {
       apiUrl: 'https://vue3-course-api.hexschool.io/v2',
       apiPath: 'wendybai',
       products: [],
-      // 商品狀態(切換使用)
+      // 商品狀態(切換使用)，確認是編輯或新增所使用
       isNew: false,
       tempProduct: {
         imagesUrl: [],
