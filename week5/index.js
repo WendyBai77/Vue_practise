@@ -1,6 +1,6 @@
 // 匯入 產品Modal (顯示產品列表)
 import userProductModal from "./userProductModal.js";
-// 區域註冊
+//  區域註冊並透過 Form, Field, ErrorMessage來取得方法
 const { Form, Field, ErrorMessage } = VeeValidate;
 
 // 定義規則 全部加入(CDN 版本)
@@ -25,13 +25,13 @@ const app = Vue.createApp({
   data() {
     return {
       loadingStatus: {
-        loadingItem: "", //存id 老師只有寫 loadingItem: '',
+        loadingItem: "", //存id
       },
       products: [], //產品列表
       product: {}, //單一產品
       // 驗證測試
       text: '這是一段文字',
-      from:{
+      form:{
         user: {
           name:'',
           email:'',
@@ -55,7 +55,7 @@ const app = Vue.createApp({
       axios
         .get(`${apiUrl}/v2/api/${apiPath}/products`)
         .then((res) => {
-          // console.log("產品列表", res.data.products);
+          // console.log("取得產品列表", res.data.products);
           this.products = res.data.products;
         })
         .catch((err) => {
@@ -123,7 +123,7 @@ const app = Vue.createApp({
         .then((res) => {
           // console.log("更新購物車:", res);
           alert(res.data.message);
-          this.loadingStatus.loadingItem = ""; //清掉data.id(購物車id)
+          this.loadingStatus.loadingItem = ""; //清掉data.id(購物車id)，判斷 loading 動畫
           this.getCart();
         })
         .catch((err) => {
@@ -150,7 +150,7 @@ const app = Vue.createApp({
         .delete(`${apiUrl}/v2/api/${apiPath}/cart/${id}`)
         .then((res) => {
           alert(res.data.message);
-          this.loadingStatus.loadingItem = ""; //清掉購物車id
+          this.loadingStatus.loadingItem = ""; //清掉data.id(購物車id)，判斷 loading 動畫
           this.getCart();
         })
         .catch((err) => {
@@ -161,18 +161,17 @@ const app = Vue.createApp({
     createOrder(){
       const order = this.form;
        // 需傳入表單資料(按照api格式，將表單賦予給order)
-      axios.post(`${apiUrl}/v2/api/${apiPath}/order`,{ data: order })
+      axios.post(`${apiUrl}/v2/api/${apiPath}/der`,{ data: order })
       .then((res)=>{
-        // console.log('res.data.message',res);
-        // alert(res.data.message);
-        // $refs可抓到，內層元件內的 ref="form"
-        this.$refs.from.resetFrom();
+        console.log('res.data.message',res);
+        alert(res.data.message);
+        // $refs可抓到，內層元件內的 ref="form"。(resetFrom()為js內建方法)
+        this.$refs.form.resetForm();
         this.getCart();
       }).catch((err) =>{
-        // console.log('送出表單',err);
-        // alert(err.response.data.message);
-      });
-    }
+        alert(err.response.data.message);
+      });     
+    },
   },
   mounted() {
     this.getProducts();
