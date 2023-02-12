@@ -161,7 +161,7 @@ const app = Vue.createApp({
     createOrder(){
       const order = this.form;
        // 需傳入表單資料(按照api格式，將表單賦予給order)
-      axios.post(`${apiUrl}/v2/api/${apiPath}/der`,{ data: order })
+      axios.post(`${apiUrl}/v2/api/${apiPath}/order`,{ data: order })
       .then((res)=>{
         console.log('res.data.message',res);
         alert(res.data.message);
