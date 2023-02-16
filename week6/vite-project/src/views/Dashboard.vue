@@ -13,7 +13,7 @@
 </template>
 
 <script>
-// 驗證可以寫這邊
+//驗證可以寫這邊
 export default {
   name: "Dashboard",
   data() {

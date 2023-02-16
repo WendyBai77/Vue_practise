@@ -21,9 +21,9 @@ git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://wendybai77.github.io
-# git push -f https://github.com/wendybai77/Vue_practise.git main
+git push -f https://github.com/wendybai77/Vue_practise.git main
 
 # if you are deploying to https://wendybai77.github.io/Vue_practise
-git push -f https://github.com/wendybai77/Vue_practise.git main:gh-pages
+# git push -f https://github.com/wendybai77/Vue_practise.git main:gh-pages
 
 cd -
